@@ -8,6 +8,8 @@
 #define MAX_ENV_VARIABLES 100
 #define MAX_ENV_VAR_LENGTH 100
 
+extern char** environ;
+
 void print_environment_variables(char *envp[]) {
     char *variables[MAX_ENV_VARIABLES];
     int count = 0;
@@ -78,7 +80,7 @@ int main(int argc, char *argv[], char *envp[]) {
                         execve(child_path, (char *[]) { child_program_name, "/home/undertaken/C++/labs/2/env.txt", NULL }, envp);
                         break;
                     case '&':
-                        execve(child_path, (char *[]) { child_program_name, "/home/undertaken/C++/labs/2/env.txt", NULL }, envp);
+                        execve(child_path, (char *[]) { child_program_name, "/home/undertaken/C++/labs/2/env.txt", NULL }, environ);
                         break;
                     default:
                         fprintf(stderr, "Invalid option\n");
